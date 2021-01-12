@@ -226,5 +226,9 @@ class OutputWriter:
             required_by.add(_comes_from_as_string(ireq))
         if required_by:
             annotation = ", ".join(sorted(required_by))
-            line = "{}\n    {}".format(line, comment("# via " + annotation))
+            line = "{:24}{}{}".format(
+                line,
+                "\n    " if ireq_hashes else "  ",
+                comment("# via " + annotation),
+            )
         return line
